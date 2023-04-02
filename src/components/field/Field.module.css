@@ -1,0 +1,12 @@
+.cell {
+  @apply h-[100px]
+         p-[20px]
+         shadow-shadow-bottom
+         rounded-[8px]
+         grid 
+         place-items-center
+         cursor-pointer
+         shadow-[#0f212b]
+         bg-[#1f3540]
+         min-[445px]:h-[150px];
+}

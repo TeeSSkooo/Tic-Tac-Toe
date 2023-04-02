@@ -1,0 +1,21 @@
+.cross {
+  @apply relative
+         before:absolute
+         before:top-1/2
+         before:left-0
+         before:w-full
+         before:h-[9px]
+         before:rounded-[10px]
+         before:bg-[#31c4be]
+         before:translate-y-[-50%]
+         before:rotate-45
+         after:absolute
+         after:top-1/2
+         after:left-0
+         after:w-full
+         after:h-[9px]
+         after:rounded-[10px]
+         after:bg-[#31c4be]
+         after:translate-y-[-50%]
+         after:-rotate-45;
+}
