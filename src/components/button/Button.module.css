@@ -1,0 +1,40 @@
+.button {
+  @apply relative
+         overflow-hidden
+         p-[15px] 
+         flex 
+         items-center 
+         gap-[10px] 
+         rounded-[8px] 
+         shadow-shadow-bottom 
+         shadow-[#708995] 
+         bg-[#a7bdc8];
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -230%;
+  width: 200%;
+  height: 300%;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(-30deg);
+}
+
+.button:hover::before {
+  top: -110%;
+  left: -10%;
+  opacity: 1;
+  transition-duration: 1s, 1s, 0.15s;
+  transition-property: left, top, opacity;
+  transition-timing-function: ease;
+}

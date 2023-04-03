@@ -1,25 +1,71 @@
-import { FC } from 'react';
+import { FC, MouseEvent, useEffect } from 'react';
 
-import Cross from 'components/cross/Cross';
-import Zero from 'components/zero/Zero';
+import Cell from 'components/cell/Cell';
 
-import styles from './Field.module.css';
+import useAppSelector from 'hooks/useAppSelector';
+import useAppDispatch from 'hooks/useAppDispatch';
+import { setStep, setGameOver } from 'store/slices/gameSlice';
+import checkWinner from 'utils/checkWinner';
 
 const Field: FC = () => {
+  const { firstPlayer, secondPlayer, field, doesCrossMove } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+
+  const step = (event: MouseEvent<HTMLDivElement>) => {
+    const target = event.currentTarget;
+
+    if (target && target.dataset.position) {
+      dispatch(
+        setStep({
+          x: +target.dataset.position.split(' ')[0],
+          y: +target.dataset.position.split(' ')[1],
+          item: doesCrossMove ? 'x' : 'o',
+        })
+      );
+    }
+  };
+
+  useEffect(() => {
+    switch (checkWinner(field)) {
+      case 'x':
+        alert(`${firstPlayer.name} won!`);
+        dispatch(setGameOver());
+        break;
+      case 'o':
+        alert(`${secondPlayer.name} won!`);
+        dispatch(setGameOver());
+        break;
+    }
+  }, [field]);
+
   return (
-    <div className="py-[30px] grid grid-cols-3 grid-rows-3 gap-[20px]">
-      <div className={styles.cell}>
-        <Cross />
+    <div className="py-[20px] grid grid-cols-3 grid-rows-3 gap-[20px]">
+      <div data-position="0 0" onClick={step}>
+        <Cell />
       </div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}></div>
-      <div className={styles.cell}>
-        <Zero />
+      <div data-position="0 1" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="0 2" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="1 0" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="1 1" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="1 2" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="2 0" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="2 1" onClick={step}>
+        <Cell />
+      </div>
+      <div data-position="2 2" onClick={step}>
+        <Cell />
       </div>
     </div>
   );
