@@ -4,7 +4,7 @@ import Cell from 'components/cell/Cell';
 
 import useAppSelector from 'hooks/useAppSelector';
 import useAppDispatch from 'hooks/useAppDispatch';
-import { setStep, setGameOver } from 'store/slices/gameSlice';
+import { setStep, addFirstPlayerScore, addSecondPlayerScore, setGameOver } from 'store/slices/gameSlice';
 import checkWinner from 'utils/checkWinner';
 
 const Field: FC = () => {
@@ -28,12 +28,12 @@ const Field: FC = () => {
   useEffect(() => {
     switch (checkWinner(field)) {
       case 'x':
-        alert(`${firstPlayer.name} won!`);
-        dispatch(setGameOver());
+        dispatch(addFirstPlayerScore());
+        dispatch(setGameOver(true));
         break;
       case 'o':
-        alert(`${secondPlayer.name} won!`);
-        dispatch(setGameOver());
+        dispatch(addSecondPlayerScore());
+        dispatch(setGameOver(true));
         break;
     }
   }, [field]);

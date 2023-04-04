@@ -1,0 +1,15 @@
+.modal {
+  @apply absolute 
+         top-1/2 
+         left-1/2 
+         p-[20px] 
+         flex
+         flex-col
+         items-center
+         rounded-[8px]
+         bg-[#1a3340] 
+         -translate-x-1/2 
+         -translate-y-1/2 
+         transition-all 
+         duration-200;
+}

@@ -38,12 +38,36 @@ const gameSlice = createSlice({
         state.field[x][y] = item;
       }
     },
-    setGameOver(state) {
-      state.gameOver = true;
+    addFirstPlayerScore(state) {
+      state.firstPlayer.score++;
+    },
+    addSecondPlayerScore(state) {
+      state.secondPlayer.score++;
+    },
+    setGameOver(state, action: PayloadAction<boolean>) {
+      if (action.payload) {
+        state.gameOver = action.payload;
+      } else {
+        for (let row = 0; row < state.field.length; row++) {
+          for (let col = 0; col < state.field[row].length; col++) {
+            state.field[row][col] = '';
+          }
+        }
+
+        state.gameOver = action.payload;
+      }
     },
   },
 });
 
 export default gameSlice.reducer;
 
-export const { setFirstPlayerName, setSecondPlayerName, toggleCrossMove, setStep, setGameOver } = gameSlice.actions;
+export const {
+  setFirstPlayerName,
+  setSecondPlayerName,
+  toggleCrossMove,
+  setStep,
+  addFirstPlayerScore,
+  addSecondPlayerScore,
+  setGameOver,
+} = gameSlice.actions;

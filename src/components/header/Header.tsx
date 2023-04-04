@@ -2,18 +2,22 @@ import { FC } from 'react';
 
 import Cross from 'components/cross/Cross';
 import Zero from 'components/zero/Zero';
-import Button from 'components/button/Button';
 
-import restart from 'assets/restart.svg';
+import useAppSelector from 'hooks/useAppSelector';
 
 const Header: FC = () => {
+  const { doesCrossMove } = useAppSelector((state) => state);
+
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-[10px]">
         <Cross width={40} height={40} />
         <Zero width={40} height={40} />
       </div>
-      <Button text="Restart" icon={restart} />
+      <div className="flex items-center gap-[10px] p-[10px] rounded-[8px] text-center bg-[#1f3540]">
+        <div>{doesCrossMove ? <Cross width={30} height={30} /> : <Zero width={30} height={30} />}</div>
+        <span className="text-[#a7bdc8] font-bold uppercase text-xl">Turn</span>
+      </div>
     </div>
   );
 };

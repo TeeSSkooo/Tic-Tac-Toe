@@ -1,8 +1,11 @@
 .button {
   @apply relative
          overflow-hidden
+         max-w-[120px]
+         w-full
          p-[15px] 
          flex 
+         justify-center
          items-center 
          gap-[10px] 
          rounded-[8px] 
