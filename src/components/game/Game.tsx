@@ -20,7 +20,12 @@ const Game: FC = () => {
   const { firstPlayer, secondPlayer, gameOver, winner, showEditModal } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  const openEditModal = () => dispatch(setShowEditModal(true));
+  const openEditModal = () => {
+    document.body.style.overflow = 'hidden';
+    document.body.scrollIntoView();
+
+    dispatch(setShowEditModal(true));
+  };
 
   return (
     <div className="max-w-[530px] p-[15px] w-full">

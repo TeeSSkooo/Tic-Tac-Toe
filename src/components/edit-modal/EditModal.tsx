@@ -25,7 +25,11 @@ const EditModal: FC = () => {
     dispatch(setShowEditModal(false));
   };
 
-  const closeModal = () => dispatch(setShowEditModal(false));
+  const closeModal = () => {
+    document.body.style.overflow = 'auto';
+
+    dispatch(setShowEditModal(false));
+  };
 
   return (
     <Modal>
