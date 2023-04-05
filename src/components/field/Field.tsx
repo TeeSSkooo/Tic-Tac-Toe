@@ -1,10 +1,10 @@
 import { FC, MouseEvent, useEffect } from 'react';
 
-import Cell from 'components/cell/Cell';
+import Cell from 'components/UI/cell/Cell';
 
 import useAppSelector from 'hooks/useAppSelector';
 import useAppDispatch from 'hooks/useAppDispatch';
-import { setStep, addFirstPlayerScore, addSecondPlayerScore, setGameOver } from 'store/slices/gameSlice';
+import { setStep, addFirstPlayerScore, addSecondPlayerScore, setGameOver, setWinner } from 'store/slices/gameSlice';
 import checkWinner from 'utils/checkWinner';
 
 const Field: FC = () => {
@@ -30,10 +30,12 @@ const Field: FC = () => {
       case 'x':
         dispatch(addFirstPlayerScore());
         dispatch(setGameOver(true));
+        dispatch(setWinner(firstPlayer.name));
         break;
       case 'o':
         dispatch(addSecondPlayerScore());
         dispatch(setGameOver(true));
+        dispatch(setWinner(secondPlayer.name));
         break;
     }
   }, [field]);

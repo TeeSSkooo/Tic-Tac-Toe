@@ -1,0 +1,5 @@
+.input {
+  @apply p-[5px]
+         rounded-[8px]
+         focus:outline-none;
+}

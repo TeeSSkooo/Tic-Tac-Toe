@@ -1,7 +1,7 @@
 import { FC, MouseEvent, useState, useEffect, useMemo } from 'react';
 
-import Cross from 'components/cross/Cross';
-import Zero from 'components/zero/Zero';
+import Cross from 'components/UI/cross/Cross';
+import Zero from 'components/UI/zero/Zero';
 
 import useAppSelector from 'hooks/useAppSelector';
 import useAppDispatch from 'hooks/useAppDispatch';

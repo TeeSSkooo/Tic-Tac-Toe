@@ -14,8 +14,10 @@ const initialState = {
     ['', '', ''],
     ['', '', ''],
   ],
+  showEditModal: false,
   doesCrossMove: true,
   gameOver: false,
+  winner: '',
 };
 
 const gameSlice = createSlice({
@@ -44,6 +46,20 @@ const gameSlice = createSlice({
     addSecondPlayerScore(state) {
       state.secondPlayer.score++;
     },
+    setShowEditModal(state, action: PayloadAction<boolean>) {
+      state.showEditModal = action.payload;
+    },
+    changeFirstPlayerName(state, action: PayloadAction<string>) {
+      state.firstPlayer.name = action.payload ? action.payload : state.firstPlayer.name;
+    },
+    changeSecondPlayerName(state, action: PayloadAction<string>) {
+      state.secondPlayer.name = action.payload ? action.payload : state.secondPlayer.name;
+    },
+    resetScores(state, action: PayloadAction<boolean>) {
+      if (action.payload) {
+        state.firstPlayer.score = state.secondPlayer.score = 0;
+      }
+    },
     setGameOver(state, action: PayloadAction<boolean>) {
       if (action.payload) {
         state.gameOver = action.payload;
@@ -54,8 +70,13 @@ const gameSlice = createSlice({
           }
         }
 
+        state.winner = '';
+        state.doesCrossMove = true;
         state.gameOver = action.payload;
       }
+    },
+    setWinner(state, action: PayloadAction<string>) {
+      state.winner = action.payload;
     },
   },
 });
@@ -70,4 +91,9 @@ export const {
   addFirstPlayerScore,
   addSecondPlayerScore,
   setGameOver,
+  setWinner,
+  setShowEditModal,
+  changeFirstPlayerName,
+  changeSecondPlayerName,
+  resetScores,
 } = gameSlice.actions;
